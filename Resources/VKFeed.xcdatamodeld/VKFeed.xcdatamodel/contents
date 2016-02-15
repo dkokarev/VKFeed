@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15D21" minimumToolsVersion="Xcode 7.0">
+    <entity name="Attachment" representedClassName="Attachment" syncable="YES">
+        <attribute name="attachmentId" attributeType="Integer 32" defaultValueString="0" syncable="YES">
+            <userInfo>
+                <entry key="mappedKeyName" value="id"/>
+            </userInfo>
+        </attribute>
+        <attribute name="height" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES">
+            <userInfo>
+                <entry key="mappedKeyName" value="height"/>
+            </userInfo>
+        </attribute>
+        <attribute name="ownerId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES">
+            <userInfo>
+                <entry key="mappedKeyName" value="owner_id"/>
+            </userInfo>
+        </attribute>
+        <attribute name="text" optional="YES" attributeType="String" syncable="YES">
+            <userInfo>
+                <entry key="mappedKeyName" value="text"/>
+            </userInfo>
+        </attribute>
+        <attribute name="width" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES">
+            <userInfo>
+                <entry key="mappedKeyName" value="width"/>
+            </userInfo>
+        </attribute>
+        <relationship name="feedItem" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FeedItem" inverseName="attachments" inverseEntity="FeedItem" syncable="YES"/>
+        <relationship name="sources" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PhotoSource" inverseName="attachment" inverseEntity="PhotoSource" syncable="YES"/>
+        <userInfo>
+            <entry key="relatedByAttribute" value="attachmentId"/>
+        </userInfo>
+    </entity>
+    <entity name="FeedItem" representedClassName="FeedItem" syncable="YES">
+        <attribute name="commentsCount" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES">
+            <userInfo>
+                <entry key="mappedKeyName" value="comments.count"/>
+            </userInfo>
+        </attribute>
+        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="itemId" attributeType="Integer 32" defaultValueString="0" syncable="YES">
+            <userInfo>
+                <entry key="mappedKeyName" value="id"/>
+            </userInfo>
+        </attribute>
+        <attribute name="likesCount" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES">
+            <userInfo>
+                <entry key="mappedKeyName" value="likes.count"/>
+            </userInfo>
+        </attribute>
+        <attribute name="repostsCount" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES">
+            <userInfo>
+                <entry key="mappedKeyName" value="reposts.count"/>
+            </userInfo>
+        </attribute>
+        <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="attachments" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Attachment" inverseName="feedItem" inverseEntity="Attachment" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="feedItems" inverseEntity="User" syncable="YES"/>
+        <userInfo>
+            <entry key="relatedByAttribute" value="itemId"/>
+        </userInfo>
+    </entity>
+    <entity name="PhotoSource" representedClassName="PhotoSource" syncable="YES">
+        <attribute name="size" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="attachment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Attachment" inverseName="sources" inverseEntity="Attachment" syncable="YES"/>
+        <userInfo>
+            <entry key="relatedByAttribute" value="url"/>
+        </userInfo>
+    </entity>
+    <entity name="User" representedClassName="User" syncable="YES">
+        <attribute name="firstname" optional="YES" attributeType="String" syncable="YES">
+            <userInfo>
+                <entry key="mappedKeyName" value="first_name"/>
+            </userInfo>
+        </attribute>
+        <attribute name="lastname" optional="YES" attributeType="String" syncable="YES">
+            <userInfo>
+                <entry key="mappedKeyName" value="last_name"/>
+            </userInfo>
+        </attribute>
+        <attribute name="userId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES">
+            <userInfo>
+                <entry key="mappedKeyName" value="id"/>
+            </userInfo>
+        </attribute>
+        <relationship name="feedItems" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="FeedItem" inverseName="user" inverseEntity="FeedItem" syncable="YES"/>
+        <relationship name="photoSources" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PhotoSource" syncable="YES"/>
+        <userInfo>
+            <entry key="relatedByAttribute" value="userId"/>
+        </userInfo>
+    </entity>
+    <elements>
+        <element name="Attachment" positionX="-5231" positionY="-2430" width="128" height="148"/>
+        <element name="FeedItem" positionX="-4997" positionY="-2412" width="128" height="163"/>
+        <element name="PhotoSource" positionX="-5472" positionY="-2349" width="128" height="88"/>
+        <element name="User" positionX="-5229" positionY="-2205" width="128" height="118"/>
+    </elements>
+</model>
