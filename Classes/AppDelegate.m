@@ -38,6 +38,9 @@ static NSString * const VK_APP_ID = @"5290047";
 }
 
 - (void)showControllerWithClass:(Class)class {
+    if (!class) {
+        return;
+    }
     UIViewController *controller = [[class alloc] init];
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
     self.window.rootViewController = navController;
