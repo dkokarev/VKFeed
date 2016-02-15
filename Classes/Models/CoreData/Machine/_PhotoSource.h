@@ -10,6 +10,7 @@ extern const struct PhotoSourceAttributes {
 
 extern const struct PhotoSourceRelationships {
 	__unsafe_unretained NSString *attachment;
+	__unsafe_unretained NSString *user;
 } PhotoSourceRelationships;
 
 extern const struct PhotoSourceUserInfo {
@@ -17,6 +18,7 @@ extern const struct PhotoSourceUserInfo {
 } PhotoSourceUserInfo;
 
 @class Attachment;
+@class User;
 
 @interface PhotoSourceID : NSManagedObjectID {}
 @end
@@ -43,6 +45,10 @@ extern const struct PhotoSourceUserInfo {
 
 //- (BOOL)validateAttachment:(id*)value_ error:(NSError**)error_;
 
+@property (nonatomic, strong) User *user;
+
+//- (BOOL)validateUser:(id*)value_ error:(NSError**)error_;
+
 @end
 
 @interface _PhotoSource (CoreDataGeneratedPrimitiveAccessors)
@@ -58,5 +64,8 @@ extern const struct PhotoSourceUserInfo {
 
 - (Attachment*)primitiveAttachment;
 - (void)setPrimitiveAttachment:(Attachment*)value;
+
+- (User*)primitiveUser;
+- (void)setPrimitiveUser:(User*)value;
 
 @end

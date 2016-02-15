@@ -5,9 +5,9 @@
 
 target 'VKFeed' do
    pod 'SVProgressHUD'
-   pod 'SDWebImage'
    pod "VK-ios-sdk"
    pod "MagicalRecord"
    pod 'AFNetworking', '~> 3.0'
+   pod 'SDWebImage'
 end
 

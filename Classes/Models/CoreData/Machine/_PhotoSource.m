@@ -10,6 +10,7 @@ const struct PhotoSourceAttributes PhotoSourceAttributes = {
 
 const struct PhotoSourceRelationships PhotoSourceRelationships = {
 	.attachment = @"attachment",
+	.user = @"user",
 };
 
 const struct PhotoSourceUserInfo PhotoSourceUserInfo = {
@@ -74,6 +75,8 @@ const struct PhotoSourceUserInfo PhotoSourceUserInfo = {
 @dynamic url;
 
 @dynamic attachment;
+
+@dynamic user;
 
 @end
 

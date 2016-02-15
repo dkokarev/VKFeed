@@ -13,6 +13,7 @@
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF contains[cd] 'photo_'"];
     NSArray *filteredKeys = [data.allKeys filteredArrayUsingPredicate:predicate];
     for (NSString *key in filteredKeys) {
+        NSLog(@"========================= %@", data[key]);
         NSArray *components = [key componentsSeparatedByString:@"_"];
         NSDictionary *dictionary = @{@"size":components[1], @"url":data[key]};
         [self addPhotoSourcesObject:[PhotoSource MR_importFromObject:dictionary]];

@@ -59,6 +59,7 @@
             });
         });
     }];
+     
     self.fullnameLabel.text = item.user.fullname;
     self.dateLabel.text = item.formattedDate;
     self.mainLabel.text = item.text;
@@ -100,7 +101,6 @@
     if (format.length) {
         [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:format options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:views]];
     }
-    [self layoutIfNeeded];
 }
 
 @end

@@ -65,6 +65,7 @@
         <attribute name="size" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="attachment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Attachment" inverseName="sources" inverseEntity="Attachment" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="photoSources" inverseEntity="User" syncable="YES"/>
         <userInfo>
             <entry key="relatedByAttribute" value="url"/>
         </userInfo>
@@ -86,7 +87,7 @@
             </userInfo>
         </attribute>
         <relationship name="feedItems" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="FeedItem" inverseName="user" inverseEntity="FeedItem" syncable="YES"/>
-        <relationship name="photoSources" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PhotoSource" syncable="YES"/>
+        <relationship name="photoSources" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PhotoSource" inverseName="user" inverseEntity="PhotoSource" syncable="YES"/>
         <userInfo>
             <entry key="relatedByAttribute" value="userId"/>
         </userInfo>
@@ -94,7 +95,7 @@
     <elements>
         <element name="Attachment" positionX="-5231" positionY="-2430" width="128" height="148"/>
         <element name="FeedItem" positionX="-4997" positionY="-2412" width="128" height="163"/>
-        <element name="PhotoSource" positionX="-5472" positionY="-2349" width="128" height="88"/>
+        <element name="PhotoSource" positionX="-5472" positionY="-2349" width="128" height="103"/>
         <element name="User" positionX="-5229" positionY="-2205" width="128" height="118"/>
     </elements>
 </model>

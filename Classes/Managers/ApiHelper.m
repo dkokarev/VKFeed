@@ -8,26 +8,31 @@
 
 #import "ApiHelper.h"
 #import <VK-ios-sdk/VKSdk.h>
+#import <AFNetworking/AFNetworking.h>
 #import <MagicalRecord/MagicalRecord.h>
 #import "FeedItem.h"
 #import "User.h"
 
 static const NSInteger WallPageCount = 20;
+static NSString * const BaseUrl = @"https://api.vk.com/method/";
 
 @implementation ApiHelper
 
-+ (VKRequest *)getWallItemsForPage:(NSInteger)page success:(void(^)(NSArray *items, BOOL allPagesLoaded, BOOL fromCache))success failure:(void(^)(NSError *error))failure {
++ (NSURLSessionDataTask *)getWallItemsForPage:(NSInteger)page success:(void(^)(NSArray *items, BOOL allPagesLoaded, BOOL fromCache))success failure:(void(^)(NSError *error))failure {
     if (!success) {
         return nil;
     }
     if (page == 0) {
-        NSFetchRequest *fetchRequest = [FeedItem MR_requestAllSortedBy:@"itemId" ascending:NO];
+        NSFetchRequest *fetchRequest = [FeedItem MR_requestAllSortedBy:@"date" ascending:NO];
         fetchRequest.fetchLimit = WallPageCount;
+        fetchRequest.predicate = [NSPredicate predicateWithFormat:@"user.userId == %@", [VKSdk accessToken].userId];
         NSArray *storedItems = [FeedItem MR_executeFetchRequest:fetchRequest];
         if (storedItems.count) {
             success(storedItems, NO, YES);
         }
     }
+    // VK SDK
+    /*
     VKRequest *request = [VKRequest requestWithMethod:@"wall.get"
                                            parameters:@{VK_API_OWNER_ID:[VKSdk accessToken].userId,
                                                         @"extended":@1,
@@ -44,6 +49,30 @@ static const NSInteger WallPageCount = 20;
         }
     }];
     return request;
+     */
+    NSURLSessionDataTask *task =
+    [[AFHTTPSessionManager manager] GET:[BaseUrl stringByAppendingString:@"wall.get"]
+                             parameters:@{VK_API_OWNER_ID:[VKSdk accessToken].userId,
+                                          @"extended":@1,
+                                          @"offset":@(WallPageCount * page),
+                                          @"count":@(WallPageCount),
+                                          @"access_token":[VKSdk accessToken].accessToken,
+                                          @"v":@5.45,
+                                          @"https":@1}
+                               progress:nil
+                                success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                                    NSDictionary *response = responseObject[@"response"];
+                                    [User MR_importFromArray:response[@"profiles"]];
+                                    NSArray *items = response[@"items"];
+                                    success([FeedItem MR_importFromArray:items], items.count % WallPageCount != 0 || items.count == 0, NO);
+                                    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:nil];
+                                }
+                                failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                                    if (failure) {
+                                        failure(error);
+                                    }
+                                }];
+    return task;
 }
 
 @end

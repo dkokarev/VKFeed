@@ -8,10 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@class VKRequest;
-
 @interface ApiHelper : NSObject
 
-+ (VKRequest *)getWallItemsForPage:(NSInteger)page success:(void(^)(NSArray *items, BOOL allPagesLoaded, BOOL fromCache))success failure:(void(^)(NSError *error))failure;
++ (NSURLSessionDataTask *)getWallItemsForPage:(NSInteger)page success:(void(^)(NSArray *items, BOOL allPagesLoaded, BOOL fromCache))success failure:(void(^)(NSError *error))failure;
 
 @end
