@@ -9,5 +9,6 @@ target 'VKFeed' do
    pod "MagicalRecord"
    pod 'AFNetworking', '~> 3.0'
    pod 'SDWebImage'
+   pod 'UICKeyChainStore'
 end
 

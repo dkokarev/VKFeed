@@ -7,11 +7,17 @@
 //
 
 #import "LoginViewController.h"
-#import <VK-ios-sdk/VKSdk.h>
+#import "UIAlertController+Utils.h"
+#import "ApiHelper.h"
+#import "AuthWebViewController.h"
+#import "AccessToken.h"
+#import "User.h"
 
-@interface LoginViewController () <VKSdkUIDelegate>
+@interface LoginViewController () <UITableViewDataSource, UITableViewDelegate>
 
-- (IBAction)loginWithVKAction:(id)sender;
+@property (nonatomic, strong) NSArray *users;
+
+- (void)loginWithVKAction:(id)sender;
 
 @end
 
@@ -20,26 +26,74 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"Login";
-    [[VKSdk instance] setUiDelegate:self];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Sign In" style:UIBarButtonItemStylePlain target:self action:@selector(loginWithVKAction:)];
+    self.users = [User authenticatedUsers];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
-- (IBAction)loginWithVKAction:(id)sender {
-    [VKSdk authorize:@[@"wall"]];
+- (void)loginWithVKAction:(id)sender {
+    AuthWebViewController *controller = [[AuthWebViewController alloc] init];
+    [controller setTokenHandler:^(AccessToken *accessToken) {
+        NSError *error;
+        [AccessToken addToken:accessToken error:&error];
+        if (error) {
+            [UIAlertController presentWithMessage:error.localizedDescription inController:self];
+            return;
+        }
+        [ApiHelper getUserWithId:accessToken.userId success:^(User *user, BOOL fromCache) {
+            [self showFeedForUser:user];
+        } failure:^(NSError *apiError) {
+            if (apiError) {
+                [UIAlertController presentWithMessage:apiError.localizedDescription inController:self];
+            }
+        }];
+    }];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
+    [self presentViewController:navController animated:YES completion:nil];
 }
 
-#pragma mark - VKSdkUIDelegate
-
-- (void)vkSdkShouldPresentViewController:(UIViewController *)controller {
-    [self presentViewController:controller animated:YES completion:nil];
+- (void)showFeedForUser:(User *)user {
+    [User setCurrentUser:user];
+    if (self.didLoginHandler) {
+        self.didLoginHandler();
+    }
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)vkSdkNeedCaptchaEnter:(VKError *)captchaError {
-    VKCaptchaViewController *captchaController = [VKCaptchaViewController captchaControllerWithError:captchaError];
-    [captchaController presentIn:self];
+#pragma mark - UITableViewDataSource
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.users.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *cellId = @"loginCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
+    }
+    User *user = self.users[indexPath.row];
+    cell.textLabel.text = user.fullname;
+    return cell;
+}
+
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    User *user = self.users[indexPath.row];
+    AccessToken *accessToken = [AccessToken tokenWithUserId:user.userId.stringValue];
+    if ([accessToken isValid]) {
+        [self showFeedForUser:self.users[indexPath.row]];
+    } else {
+        [self loginWithVKAction:nil];
+    }
 }
 
 @end

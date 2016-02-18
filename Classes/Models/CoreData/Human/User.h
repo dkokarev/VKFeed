@@ -8,4 +8,8 @@
 @property (nonatomic, strong, readonly) PhotoSource *largestSource;
 @property (nonatomic, strong, readonly) NSString *fullname;
 
++ (User *)currentUser;
++ (void)setCurrentUser:(User *)user;
++ (NSArray *)authenticatedUsers;
+
 @end

@@ -31,6 +31,10 @@
 		300C9A601C6FF4A400E19419 /* _PhotoSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 300C9A571C6FF4A400E19419 /* _PhotoSource.m */; };
 		300C9A611C6FF4A400E19419 /* _User.m in Sources */ = {isa = PBXBuildFile; fileRef = 300C9A591C6FF4A400E19419 /* _User.m */; };
 		300C9A641C70E69000E19419 /* TableViewErrorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 300C9A631C70E69000E19419 /* TableViewErrorCell.m */; };
+		30248C8D1C71DC0700A0692A /* AuthWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30248C8B1C71DC0700A0692A /* AuthWebViewController.m */; };
+		30248C8E1C71DC0700A0692A /* AuthWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30248C8C1C71DC0700A0692A /* AuthWebViewController.xib */; };
+		30248C911C71DF4300A0692A /* AccessToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 30248C901C71DF4300A0692A /* AccessToken.m */; };
+		30248C941C71E00D00A0692A /* NSString+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 30248C931C71E00D00A0692A /* NSString+Util.m */; };
 		3051C6151C6FB6D20085DBB6 /* FeedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3051C6141C6FB6D20085DBB6 /* FeedCell.xib */; };
 		305E702F1C6E08C000AE0994 /* FeedDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 305E702E1C6E08C000AE0994 /* FeedDataSource.m */; };
 		305E70321C6E08F300AE0994 /* TableViewLoadingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 305E70311C6E08F300AE0994 /* TableViewLoadingCell.m */; };
@@ -81,6 +85,13 @@
 		300C9A591C6FF4A400E19419 /* _User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _User.m; sourceTree = "<group>"; };
 		300C9A621C70E69000E19419 /* TableViewErrorCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewErrorCell.h; sourceTree = "<group>"; };
 		300C9A631C70E69000E19419 /* TableViewErrorCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewErrorCell.m; sourceTree = "<group>"; };
+		30248C8A1C71DC0700A0692A /* AuthWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthWebViewController.h; sourceTree = "<group>"; };
+		30248C8B1C71DC0700A0692A /* AuthWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthWebViewController.m; sourceTree = "<group>"; };
+		30248C8C1C71DC0700A0692A /* AuthWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AuthWebViewController.xib; sourceTree = "<group>"; };
+		30248C8F1C71DF4300A0692A /* AccessToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccessToken.h; sourceTree = "<group>"; };
+		30248C901C71DF4300A0692A /* AccessToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccessToken.m; sourceTree = "<group>"; };
+		30248C921C71E00D00A0692A /* NSString+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Util.h"; sourceTree = "<group>"; };
+		30248C931C71E00D00A0692A /* NSString+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Util.m"; sourceTree = "<group>"; };
 		3051C6141C6FB6D20085DBB6 /* FeedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedCell.xib; sourceTree = "<group>"; };
 		305E702D1C6E08C000AE0994 /* FeedDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedDataSource.h; sourceTree = "<group>"; };
 		305E702E1C6E08C000AE0994 /* FeedDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedDataSource.m; sourceTree = "<group>"; };
@@ -160,6 +171,16 @@
 				300C9A591C6FF4A400E19419 /* _User.m */,
 			);
 			path = Machine;
+			sourceTree = "<group>";
+		};
+		30248C891C71DBF800A0692A /* AuthWebController */ = {
+			isa = PBXGroup;
+			children = (
+				30248C8A1C71DC0700A0692A /* AuthWebViewController.h */,
+				30248C8B1C71DC0700A0692A /* AuthWebViewController.m */,
+				30248C8C1C71DC0700A0692A /* AuthWebViewController.xib */,
+			);
+			path = AuthWebController;
 			sourceTree = "<group>";
 		};
 		305E702B1C6E08A600AE0994 /* DataSource */ = {
@@ -242,6 +263,8 @@
 			isa = PBXGroup;
 			children = (
 				300C9A471C6FF4A400E19419 /* CoreData */,
+				30248C8F1C71DF4300A0692A /* AccessToken.h */,
+				30248C901C71DF4300A0692A /* AccessToken.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -249,6 +272,7 @@
 		30D45E961C6DEEFD00052B71 /* LoginController */ = {
 			isa = PBXGroup;
 			children = (
+				30248C891C71DBF800A0692A /* AuthWebController */,
 				30D45E9A1C6DEF2D00052B71 /* LoginViewController.h */,
 				30D45E9B1C6DEF2D00052B71 /* LoginViewController.m */,
 				30D45E9C1C6DEF2D00052B71 /* LoginViewController.xib */,
@@ -283,6 +307,8 @@
 				30D45EAB1C6DF50A00052B71 /* UIAlertController+Utils.m */,
 				300C9A441C6FE42C00E19419 /* UIImage+Utils.h */,
 				300C9A451C6FE42C00E19419 /* UIImage+Utils.m */,
+				30248C921C71E00D00A0692A /* NSString+Util.h */,
+				30248C931C71E00D00A0692A /* NSString+Util.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -382,6 +408,7 @@
 				30D45E9E1C6DEF2D00052B71 /* LoginViewController.xib in Resources */,
 				30D45EA41C6DEFDA00052B71 /* FeedViewController.xib in Resources */,
 				30D45E921C6DEDD700052B71 /* Assets.xcassets in Resources */,
+				30248C8E1C71DC0700A0692A /* AuthWebViewController.xib in Resources */,
 				30D45E8D1C6DED9400052B71 /* Info.plist in Resources */,
 				30D45E941C6DEDEC00052B71 /* MainWindow.xib in Resources */,
 			);
@@ -455,6 +482,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30248C8D1C71DC0700A0692A /* AuthWebViewController.m in Sources */,
 				300C9A611C6FF4A400E19419 /* _User.m in Sources */,
 				300C9A5B1C6FF4A400E19419 /* FeedItem.m in Sources */,
 				300C9A5C1C6FF4A400E19419 /* PhotoSource.m in Sources */,
@@ -462,6 +490,7 @@
 				305E70321C6E08F300AE0994 /* TableViewLoadingCell.m in Sources */,
 				30D45EAC1C6DF50A00052B71 /* UIAlertController+Utils.m in Sources */,
 				305E702F1C6E08C000AE0994 /* FeedDataSource.m in Sources */,
+				30248C941C71E00D00A0692A /* NSString+Util.m in Sources */,
 				300C9A601C6FF4A400E19419 /* _PhotoSource.m in Sources */,
 				300C9A5D1C6FF4A400E19419 /* User.m in Sources */,
 				305E70701C6E7FB300AE0994 /* VKFeed.xcdatamodeld in Sources */,
@@ -473,6 +502,7 @@
 				300C9A5E1C6FF4A400E19419 /* _Attachment.m in Sources */,
 				30D45EA31C6DEFDA00052B71 /* FeedViewController.m in Sources */,
 				30D45E9D1C6DEF2D00052B71 /* LoginViewController.m in Sources */,
+				30248C911C71DF4300A0692A /* AccessToken.m in Sources */,
 				300C9A5A1C6FF4A400E19419 /* Attachment.m in Sources */,
 				300C9A461C6FE42C00E19419 /* UIImage+Utils.m in Sources */,
 			);

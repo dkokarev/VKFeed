@@ -5,9 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AuthWebViewController">
             <connections>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="webView" destination="PRG-6H-UUt" id="VVQ-nB-8vK"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -15,21 +16,20 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Dpc-yj-2Yn">
+                <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PRG-6H-UUt">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
                     <connections>
-                        <outlet property="dataSource" destination="-1" id="5mB-0J-0kg"/>
-                        <outlet property="delegate" destination="-1" id="gRK-Jo-Pa2"/>
+                        <outlet property="delegate" destination="-1" id="dyN-li-uS6"/>
                     </connections>
-                </tableView>
+                </webView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="Dpc-yj-2Yn" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Qro-Ne-pBu"/>
-                <constraint firstAttribute="bottom" secondItem="Dpc-yj-2Yn" secondAttribute="bottom" id="UAB-sI-Cdk"/>
-                <constraint firstItem="Dpc-yj-2Yn" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="amY-w4-gT8"/>
-                <constraint firstAttribute="trailing" secondItem="Dpc-yj-2Yn" secondAttribute="trailing" id="sKp-Hc-1kZ"/>
+                <constraint firstAttribute="bottom" secondItem="PRG-6H-UUt" secondAttribute="bottom" id="4ub-5T-dqH"/>
+                <constraint firstItem="PRG-6H-UUt" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="De3-dp-Vg8"/>
+                <constraint firstItem="PRG-6H-UUt" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="HAd-qc-FtF"/>
+                <constraint firstAttribute="trailing" secondItem="PRG-6H-UUt" secondAttribute="trailing" id="kZu-7r-umu"/>
             </constraints>
         </view>
     </objects>
